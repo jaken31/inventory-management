@@ -5,7 +5,11 @@ import { useState, useEffect } from "react";
 import {firestore} from "../firebase";
 import { Box, Typography, Modal, Stack, Button, TextField } from "@mui/material";
 import {collection, deleteDoc, doc, getDocs, query, getDoc, setDoc, updateDoc} from "firebase/firestore";
-
+import '@fontsource/poppins/300.css';
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
 
 
 export default function Home() {
@@ -55,7 +59,8 @@ export default function Home() {
   const handleClose = () => setOpen(false)
   
   return (
-    <Box width="100vw" height="100vh" display="flex" justifyContent="center" alignItems="center" gap={2} flexDirection="column">
+  <Box bgcolor="blueviolet" width="100vw" height="100vh" display="flex" justifyContent="center" alignItems="center">
+    <Box width="39%" height="40%" border="2px solid #000" borderRadius="30px" padding="20px" display="flex" justifyContent="center" alignItems="center" gap={2} flexDirection="column" bgcolor="white">
       <Modal open={open} onClose={handleClose}>
         <Box position="absolute" top="50%" left="50%" transform="translate(-50%, -50%)" width={400} border="2px solid #000" boxShadow={24} p={4} display="flex" flexDirection="column" gap={3} bgcolor={"#fff"} sx={{ transform: "translate(-50%, -50%)" }}>
           <Typography variant= "h6">Add Item</Typography>
@@ -66,7 +71,6 @@ export default function Home() {
             addItem(itemName); 
             setItemName(""); 
             handleClose();}}>Add new item</Button>
-          
         </Box>
       </Modal>
       <Button border="2px solid #000" variant="outlined" onClick={handleOpen}>Add Item</Button>
@@ -81,14 +85,18 @@ export default function Home() {
               alignItems="center"
               justifyContent="space-between"
               border="2px solid #000"
+              borderRadius="30px"
+              padding="20px"
               >
-                <Typography variant="h3" color="#333" textAlign="center"> {name.charAt(0).toUpperCase() + name.slice(1)}</Typography>
-                <Typography variant="h3" color="#333" textAlign="center"> {quantity}</Typography>
+                <Typography variant="h3" fontSize="40px" color="#333" textAlign="center"> {quantity}</Typography>
+                <Typography variant="h3" fontSize="30px" color="#333" textAlign="center"> {name.charAt(0).toUpperCase() + name.slice(1)}</Typography>
                 <Button variant="outlined" onClick={() => addItem(name)}>Add</Button>
                 <Button variant="outlined" onClick={() => removeItem(name)}>Remove</Button>
               </Box>
         ))}
       </Stack>
     </Box>
+  </Box>
+    
   );
 }
